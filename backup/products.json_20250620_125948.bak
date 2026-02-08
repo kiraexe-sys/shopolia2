@@ -1,0 +1,8 @@
+[
+  {
+    "name": "T-shirt Logo",
+    "price": 120,
+    "stock": 15,
+    "image": "/static/images/tshirt.jpg"
+  }
+]

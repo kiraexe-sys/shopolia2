@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>سلة المشتريات</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* glow background */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, #22c55e, transparent 70%);
+      top: -120px;
+      left: -120px;
+      opacity: 0.5;
+    }
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  body {
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 380px;
+    padding: 28px;
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 13px 14px;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+  }
+
+}
+
+/* ================= SMALL PHONES ================= */
+@media (max-width: 480px) {
+
+  .container {
+    padding: 22px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  input {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+}
+
+    body::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, #6366f1, transparent 70%);
+      bottom: -120px;
+      right: -120px;
+      opacity: 0.5;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 45px rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 15px;
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .total {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+      color: #86efac;
+    }
+
+    form {
+      margin-top: 25px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      margin-top: 12px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #cbd5f5;
+    }
+
+    input:focus,
+    textarea:focus {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.02);
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.45);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>مرحبا {{ user }} 👋</h2>
+
+    {% for item in cart %}
+      <div class="item">
+        <span>{{ item.name }} × {{ item.quantity }}</span>
+        <span>{{ item.price * item.quantity }} MAD</span>
+      </div>
+    {% endfor %}
+
+    <div class="total">المجموع: {{ total }} MAD</div>
+
+    <form method="POST" action="/checkout">
+      <input type="text" name="phone" placeholder="رقم الهاتف" required>
+      <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+      <textarea name="message" rows="3" placeholder="رسالتك (اختياري)"></textarea>
+      <button type="submit">تأكيد الطلب</button>
+    </form>
+  </div>
+
+</body>
+</html>

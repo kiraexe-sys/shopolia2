@@ -1,0 +1,39 @@
+[
+    {
+        "user": "ankot rida",
+        "email": "ankotrida3@gmail.com",
+        "phone": "0708846636",
+        "message": "",
+        "cart": [
+            {
+                "name": "Laptop Cooling Pad",
+                "price": 160,
+                "quantity": 1
+            },
+            {
+                "name": "Gaming Headset",
+                "price": 250,
+                "quantity": 1
+            }
+        ],
+        "total": 410,
+        "status": "pending",
+        "date": "2026-01-28T21:43:25.314057"
+    },
+    {
+        "user": "ankot rida",
+        "email": "ankotrida3@gmail.com",
+        "phone": "6464214652",
+        "message": "",
+        "cart": [
+            {
+                "name": "Mechanical Keyboard",
+                "price": 350,
+                "quantity": 1
+            }
+        ],
+        "total": 350,
+        "status": "accepted",
+        "date": "2026-01-28T21:44:49.834722"
+    }
+]

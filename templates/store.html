@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopolia Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+body{min-height:100vh;color:#fff;overflow-x:hidden}
+
+/* ================= VIDEO BG ================= */
+.video-background{
+  position:fixed;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:-2
+}
+body::after{
+  content:"";position:fixed;inset:0;
+  background:rgba(2,6,23,.75);z-index:-1
+}
+
+/* ================= HEADER ================= */
+header{
+  position:sticky;top:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 30px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.15);
+  font-size:22px;font-weight:700
+}
+.menu-btn{
+  background:none;border:none;color:white;
+  font-size:26px;cursor:pointer
+}
+
+/* ================= SIDE MENU ================= */
+.side-menu{
+  position:fixed;top:0;right:-260px;
+  width:260px;height:100%;
+  background:#0f172a;
+  box-shadow:-5px 0 20px rgba(0,0,0,.6);
+  padding-top:20px;
+  transition:right .3s ease;
+  z-index:999
+}
+
+.side-menu.open{
+  right:0;
+}
+
+.side-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  font-size:18px;
+  font-weight:600;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.close-btn{
+  background:none;
+  border:none;
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.side-menu a{
+  display:block;padding:15px 20px;
+  color:white;text-decoration:none
+}
+.side-menu a:hover{background:#1f2937}
+
+/* ================= PRODUCTS ================= */
+.products-container{
+  max-width:1200px;
+  margin:40px auto 120px;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px
+}
+.product-card{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(16px);
+  border-radius:20px;
+  padding:22px;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 10px 40px rgba(0,0,0,.45);
+  text-align:center;
+  transition:.3s
+}
+.product-card:hover{transform:translateY(-6px)}
+.product-card img{
+  width:160px;height:160px;
+  object-fit:cover;border-radius:18px;
+  border:2px solid rgba(255,255,255,.3);
+  margin-bottom:15px
+}
+.price{color:#22c55e;font-size:20px;font-weight:700}
+.stock{color:#f472b6;margin-bottom:10px}
+.product-card button{
+  width:100%;padding:12px;
+  border-radius:14px;border:none;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:#fff;font-weight:600;cursor:pointer
+}
+.product-card button:disabled{
+  background:#6b7280;cursor:not-allowed
+}
+
+/* ================= FLOAT BUTTONS ================= */
+.cart-float{
+  position:fixed;bottom:25px;right:25px;
+  width:65px;height:65px;
+  background:linear-gradient(135deg,#6366f1,#9333ea);
+  color:white;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;text-decoration:none;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);
+  z-index:1000;transition:.3s
+}
+.cart-float:hover{transform:scale(1.1)}
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  body {
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 380px;
+    padding: 28px;
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 13px 14px;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+  }
+
+}
+
+/* ================= SMALL PHONES ================= */
+@media (max-width: 480px) {
+
+  .container {
+    padding: 22px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  input {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+}
+
+/* ================= AI BUTTON ================= */
+#ai-button{
+  position:fixed;
+  bottom:25px;          /* تحت cart */
+  left:25px;            /* بدل اليمين باش مايتلاقاوش */
+  width:60px;height:60px;
+  background:linear-gradient(135deg,#6366f1,#9333ea);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;cursor:pointer;
+  z-index:999;box-shadow:0 10px 25px rgba(0,0,0,.4)
+}
+
+/* ================= AI CHAT ================= */
+#ai-chat{
+  position:fixed;
+  bottom:95px;
+  left:25px;           /* نفس جهة الزر */
+  width:320px;height:420px;
+  background:rgba(15,23,42,.95);
+  backdrop-filter:blur(16px);
+  border-radius:20px;
+  display:none;flex-direction:column;
+  overflow:hidden;z-index:1000;
+  box-shadow:0 20px 60px rgba(0,0,0,.6)
+}
+.ai-header{
+  background:linear-gradient(135deg,#6366f1,#9333ea);
+  padding:12px;display:flex;
+  justify-content:space-between;
+  align-items:center;font-weight:600
+}
+.ai-header button{
+  background:none;border:none;color:white;
+  font-size:16px;cursor:pointer
+}
+.ai-messages{
+  flex:1;padding:10px;
+  overflow-y:auto;font-size:14px
+}
+.ai-input{display:flex;border-top:1px solid rgba(255,255,255,.1)}
+.ai-input input{
+  flex:1;padding:10px;border:none;
+  background:transparent;color:white
+}
+.ai-input button{
+  background:#22c55e;border:none;
+  padding:10px 15px;color:white;cursor:pointer
+}
+</style>
+</head>
+
+<body>
+
+<a href="/cart" class="cart-float">🛒</a>
+
+<video autoplay muted loop class="video-background">
+<source src="https://motionbgs.com/media/7893/luffy-in-the-shadows.960x540.mp4" type="video/mp4">
+</video>
+
+<header>
+Shopolia Store
+<button onclick="toggleMenu()" class="menu-btn">☰</button>
+</header>
+
+<div id="sideMenu" class="side-menu">
+  <div class="side-header">
+    <span>Menu</span>
+    <button onclick="toggleMenu()" class="close-btn">✖</button>
+  </div>
+
+  <a href="/account">👤 Account</a>
+  <a href="/store">🛒 Products</a>
+  <a href="/cart">📦 Cart</a>
+  {% if session.email == config_admin_email %}
+  <a href="/admin">⚙️ Admin</a>
+  {% endif %}
+  <a href="/support">💬 Support</a>
+  <a href="/logout">🚪 Logout</a>
+</div>
+
+<main class="products-container">
+{% for product in products %}
+<div class="product-card">
+<img src="{{ product.image }}">
+<h3>{{ product.name }}</h3>
+<div class="price">{{ product.price }} MAD</div>
+<div class="stock">Stock: {{ product.stock }}</div>
+<form method="POST" action="/add_to_cart/{{ product.name }}">
+<button {% if product.stock|int <= 0 %}disabled{% endif %}>
+{% if product.stock|int > 0 %}Add to Cart{% else %}Out of Stock{% endif %}
+</button>
+</form>
+</div>
+{% endfor %}
+</main>
+
+<!-- AI BUTTON -->
+<div id="ai-button" onclick="toggleAI()">🤖</div>
+
+<!-- AI CHAT -->
+<div id="ai-chat">
+<div class="ai-header">
+<span>Shopolia AI</span>
+<button onclick="toggleAI()">✖</button>
+</div>
+<div id="ai-messages" class="ai-messages"></div>
+<div class="ai-input">
+<input id="ai-text" placeholder="اكتب سؤالك...">
+<button onclick="sendAI()">إرسال</button>
+</div>
+</div>
+
+<script>
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("open");
+}
+
+function toggleAI(){
+const chat=document.getElementById("ai-chat");
+chat.style.display=chat.style.display==="flex"?"none":"flex";
+}
+
+function sendAI(){
+const input=document.getElementById("ai-text");
+const msg=input.value;
+if(!msg)return;
+const box=document.getElementById("ai-messages");
+box.innerHTML+="<p><b>أنت:</b> "+msg+"</p>";
+fetch("/ai",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({message:msg})
+})
+.then(r=>r.json())
+.then(d=>{
+box.innerHTML+="<p><b>AI:</b> "+d.reply+"</p>";
+box.scrollTop=box.scrollHeight;
+});
+input.value="";
+}
+</script>
+
+</body>
+</html>

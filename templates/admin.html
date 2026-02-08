@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; font-family:'Poppins',sans-serif; }
+    body {
+      min-height:100vh;
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color:#fff;
+      padding:30px;
+    }
+
+    header {
+      max-width:1200px;
+      margin:auto;
+      margin-bottom:20px;
+      padding:20px 30px;
+      border-radius:20px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      text-align:center;
+      font-size:26px;
+      font-weight:700;
+      color:#a5b4fc;
+    }
+
+    .admin-nav{
+      max-width:1200px;
+      margin:0 auto 30px;
+      display:flex;
+      gap:15px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .admin-nav a{
+      padding:10px 18px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.12);
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      transition:.3s;
+    }
+    .admin-nav a:hover{
+      background:linear-gradient(135deg,#9333ea,#6366f1);
+    }
+
+    .container{ max-width:1200px; margin:auto; }
+    h2{ margin:25px 0 15px; color:#86efac; font-size:22px; }
+
+    .glass{
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.15);
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
+      padding:20px;
+      margin-bottom:30px;
+    }
+
+    input, textarea{
+      background: rgba(255,255,255,0.15);
+      border:none;
+      border-radius:10px;
+      padding:10px 12px;
+      color:#fff;
+      outline:none;
+      margin:5px;
+    }
+    input{ width:140px; }
+    textarea{ width:100%; font-family:monospace; }
+
+    button{
+      background: linear-gradient(135deg, #9333ea, #6366f1);
+      border:none;
+      border-radius:10px;
+      padding:8px 14px;
+      color:#fff;
+      font-weight:600;
+      cursor:pointer;
+      margin:3px;
+    }
+
+    table{ width:100%; border-collapse:collapse; font-size:14px; }
+    th, td{ padding:10px; text-align:left; }
+    th{ background: rgba(255,255,255,0.15); }
+    tr{ border-bottom:1px solid rgba(255,255,255,0.15); }
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap:20px;
+    }
+    .stat-box{
+      padding:20px;
+      border-radius:18px;
+      background: rgba(255,255,255,0.1);
+      text-align:center;
+      font-size:18px;
+      font-weight:600;
+    }
+    .stat-box span{
+      display:block;
+      margin-top:8px;
+      font-size:26px;
+      color:#a5b4fc;
+    }
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  body {
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 380px;
+    padding: 28px;
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 13px 14px;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+  }
+
+}
+
+/* ================= SMALL PHONES ================= */
+@media (max-width: 480px) {
+
+  .container {
+    padding: 22px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  input {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+}
+
+    html{ scroll-behavior:smooth; }
+  </style>
+</head>
+
+<body>
+
+<header>🧑‍💼 Shopolia – Admin Dashboard</header>
+
+<nav class="admin-nav">
+  <a href="#add-product">➕ Add</a>
+  <a href="#json-product">📥 JSON</a>
+  <a href="#support">🧑‍💻 Support</a>
+  <a href="#products">📦 Products</a>
+  <a href="#orders">🛒 Orders</a>
+  <a href="#stats">📊 Stats</a>
+</nav>
+
+<div class="container">
+
+<!-- Add Product -->
+<div class="glass" id="add-product">
+  <h2>➕ Add Product</h2>
+  <form action="/admin/add" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="number" name="price" placeholder="Price" required>
+    <input type="number" name="stock" placeholder="Stock" required>
+    <input type="text" name="image" placeholder="Image URL" required>
+    <button type="submit">Add</button>
+  </form>
+</div>
+
+<!-- JSON -->
+<div class="glass" id="json-product">
+  <h2>📥 Add Products via JSON</h2>
+  <form action="/admin/add_json" method="POST">
+    <textarea name="json_data" rows="8" placeholder='[
+  {
+    "name": "Netflix Premium",
+    "price": 35,
+    "stock": 50,
+    "image": "https://..."
+  }
+]'></textarea>
+    <br><br>
+    <button type="submit">➕ Import JSON</button>
+  </form>
+</div>
+
+<!-- Support -->
+<div class="glass" id="support">
+  <h2>🧑‍💻 Support Requests</h2>
+  {% if support and support|length > 0 %}
+  <table>
+    <tr>
+      <th>User</th><th>Email</th><th>Type</th><th>Message</th><th>Date</th><th>Status</th>
+    </tr>
+    {% for ticket in support %}
+    <tr>
+      <td>{{ ticket.user }}</td>
+      <td>{{ ticket.email }}</td>
+      <td>{{ ticket.type }}</td>
+      <td>{{ ticket.message }}</td>
+      <td>{{ ticket.date }}</td>
+      <td>{{ ticket.status }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>📭 لا يوجد دعم</p>
+  {% endif %}
+</div>
+<!-- Manager Requests -->
+<div class="glass">
+<h2>🧑‍💼 Manager Requests</h2>
+{% for req in manager_requests %}
+<p>
+  {{ req.name }} - {{ req.email }}
+  <form action="/admin/approve_manager" method="POST" style="display:inline">
+    <input type="hidden" name="email" value="{{ req.email }}">
+    <button>Approve</button>
+  </form>
+</p>
+{% endfor %}
+</div>
+
+<!-- Products -->
+<div class="glass" id="products">
+  <h2>📦 Products</h2>
+
+  <form action="/admin/delete_selected" method="POST">
+    <button type="submit">🗑️ Delete Selected</button>
+    <label>
+      <input type="checkbox" onclick="toggleAll(this)"> Select All
+    </label>
+
+    <table>
+      <tr>
+        <th>Select</th>
+        <th>Name</th><th>Price</th><th>Stock</th><th>Image</th><th>Actions</th>
+      </tr>
+
+      {% for product in products %}
+      <tr>
+        <td>
+          <input type="checkbox" name="selected_products" value="{{ product.name }}">
+        </td>
+
+        <form action="/admin/edit" method="POST">
+          <td>
+            <input type="hidden" name="original_name" value="{{ product.name }}">
+            <input type="text" name="name" value="{{ product.name }}">
+          </td>
+          <td><input type="number" name="price" value="{{ product.price }}"></td>
+          <td><input type="number" name="stock" value="{{ product.stock }}"></td>
+          <td><input type="text" name="image" value="{{ product.image }}"></td>
+          <td>
+            <button type="submit">Edit</button>
+        </form>
+
+        <form action="/admin/delete" method="POST">
+            <input type="hidden" name="name" value="{{ product.name }}">
+            <button type="submit">Delete</button>
+        </form>
+          </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </form>
+</div>
+
+<!-- Orders -->
+<div class="glass" id="orders">
+  <h2>🛒 Orders</h2>
+  <table>
+    <tr>
+      <th>User</th><th>Email</th><th>Phone</th><th>Message</th>
+      <th>Total</th><th>Status</th><th>Actions</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.user }}</td>
+      <td>{{ order.email }}</td>
+      <td>{{ order.phone }}</td>
+      <td>{{ order.message }}</td>
+      <td>{{ order.total }} MAD</td>
+      <td>{{ order.status }}</td>
+      <td>
+        <form method="POST" action="/admin/order_action">
+          <input type="hidden" name="order_index" value="{{ loop.index0 }}">
+          <input type="hidden" name="action" value="accept">
+          <button type="submit">Accept</button>
+        </form>
+        <form method="POST" action="/admin/order_action">
+          <input type="hidden" name="order_index" value="{{ loop.index0 }}">
+          <input type="hidden" name="action" value="reject">
+          <button type="submit">Reject</button>
+        </form>
+        <form method="POST" action="/admin/order_action">
+          <input type="hidden" name="order_index" value="{{ loop.index0 }}">
+          <input type="hidden" name="action" value="delete">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<!-- Stats -->
+<div class="glass" id="stats">
+  <h2>📊 Statistics</h2>
+  <div class="stats">
+    <div class="stat-box">Products <span>{{ stats.products }}</span></div>
+    <div class="stat-box">Orders <span>{{ stats.orders }}</span></div>
+    <div class="stat-box">Users <span>{{ stats.users }}</span></div>
+  </div>
+</div>
+
+</div>
+
+<script>

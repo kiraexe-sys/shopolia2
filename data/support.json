@@ -1,0 +1,29 @@
+[
+    {
+        "user": "ankot rida",
+        "name": "ankot rida",
+        "email": "ankotrida3@gmail.com",
+        "type": "استفسار عام",
+        "message": "wax kayna xi haja free",
+        "date": "2026-01-22T02:04:28.951047",
+        "status": "open"
+    },
+    {
+        "user": "ankot rida",
+        "name": "Ankot Rida",
+        "email": "ankotrida3@gmail.com",
+        "type": "مشكل فالطلب",
+        "message": "jd",
+        "date": "2026-01-22T02:04:57.220130",
+        "status": "open"
+    },
+    {
+        "user": "ankot rida",
+        "name": "Ankot Rida",
+        "email": "ankotrida3@gmail.com",
+        "type": "تأخير الخدمة",
+        "message": "i want juste test the website",
+        "date": "2026-01-25T11:54:37.786228",
+        "status": "open"
+    }
+]

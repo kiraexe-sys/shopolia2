@@ -1,0 +1,45 @@
+[
+    {
+        "name": "Ankot rida",
+        "email": "ankotrida1@gmail.com",
+        "password": "pbkdf2:sha256:600000$XzIvaDbhzHwv09NM$bdef507ab4e3822c99c4a4c07a8511a04a2ca57c12a3e2fb96d03bbe57189d42"
+    },
+    {
+        "name": "Admin",
+        "email": "admin@example.com",
+        "password": "pbkdf2:sha256:600000$FjYCqRxUU5OxA0Ky$d8ecad8d5a0eeb8dfa64bb5f93fa413e2dff960504866e4771ba7838579d60c3"
+    },
+    {
+        "name": "dddd",
+        "email": "dddddd@gmail.com",
+        "password": "pbkdf2:sha256:600000$UaBGtL032tFQ3BFN$7a8f6b51c8e7e5116fe4b4f389759bd13e11065ea69f598164f27e2e5dbe4751"
+    },
+    {
+        "name": "wwwwwwww",
+        "email": "adcdi@gmail.com",
+        "password": "pbkdf2:sha256:600000$XYOjVWKj1SURkpOW$a1d8efa84ef3e27e06ac0d8a8e4a7cd4b0d06ce5916a8c0f7b32cfe27c182714"
+    },
+    {
+        "name": "anasanas",
+        "email": "anas@gmail.com",
+        "password": "pbkdf2:sha256:600000$fHWnUSECbfAODxpH$ed6de2641ed156426db592029f8432809976f077e40a22b79ab7811fa7b0a615"
+    },
+    {
+        "name": "Ay",
+        "email": "zabi@g.com",
+        "password": "pbkdf2:sha256:600000$1hcPB27IPv7Otu8T$b577f63ad439f97d38b158c92df2310e1d35ca5f5cd9f770c9d271bb8e3409aa"
+    },
+    {
+        "name": "Ankot Rida",
+        "email": "ankotrida3@gmail.com",
+        "password": "pbkdf2:sha256:600000$uqoPDgHM3xD8Zxui$d91e904bc45a1a5e7e1c124931f2d89584127c4eea9eeb6b74a26c60874112dc"
+    },
+    {
+        "name": "kiraexe",
+        "email": "ankotrida13@gmail.com",
+        "password": "pbkdf2:sha256:600000$EINhotTIwdS9tCnk$a304e79dec810715f997cba526815bdd9f72fc4e48138144c993ef65196cedbf",
+        "verified": true,
+        "reset_token": "rA4SfRc5vj3XJNaC6XeYL1cLDIB7-oyh-3k8tigJb8w",
+        "reset_expire": "2026-02-08T02:48:10.331287"
+    }
+]
